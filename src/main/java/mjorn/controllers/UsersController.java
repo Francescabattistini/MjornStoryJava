@@ -27,8 +27,7 @@ public class UsersController {
     }
 
     // ************************************************* /ME ENDPOINTS ***********************************************
-    // Se ho effettuato SecurityContextHolder.getContext().setAuthentication(authentication) nel Filter, allora negli endpoint autenticati
-    // posso accedere a chi è l'utente che sta effettuando la richiesta, tramite @AuthenticationPrincipal. Grazie a questo Principal quindi
+    // tramite @AuthenticationPrincipal. Grazie a questo Principal quindi
     // possiamo andare ad implementare tutta una serie di endpoint "personali", cioè endpoint per leggere il proprio profilo, cambiare i propri
     // dati oppure anche cancellare se stessi. Inoltre grazie al Principal potremo in futuro anche andare ad effettuare dei controlli, es:
     // endpoint per cancellare un record di cui sono proprietario, devo fare una verifica che il proprietario corrisponda al Principal
@@ -61,7 +60,6 @@ public class UsersController {
             validationResult.getAllErrors().forEach(System.out::println);
             throw new BadRequestException("Ci sono stati errori nel payload!");
         }
-        // Ovunque ci sia un body bisognerebbe validarlo!
         return this.usersService.findByIdAndUpdate(userId, body);
     }
 
