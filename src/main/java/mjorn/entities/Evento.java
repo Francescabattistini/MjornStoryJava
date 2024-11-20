@@ -37,14 +37,18 @@ public class Evento {
     @Column(name = "data_inserimento")
     @CreationTimestamp
     private LocalDate dataInserimento;
+    @ManyToOne
+    @JoinColumn(name = "id_utente")
+    private User user;
 
-    public Evento(String nome, String dataEvento, String luogo, String testo, String img, LocalDate dataInserimento) {
+    public Evento(String nome, String dataEvento, String luogo, String testo, String img, LocalDate dataInserimento, User user) {
         this.nome = nome;
         this.dataEvento = dataEvento;
         this.luogo = luogo;
         this.testo = testo;
         this.img = img;
         this.dataInserimento = dataInserimento;
+        this.user = user;
     }
 }
 

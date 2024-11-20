@@ -42,12 +42,12 @@ public class securityconf {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3005"));
-        configuration.setAllowedMethods(List.of(""));
-        configuration.setAllowedHeaders(List.of(""));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3005", "http://localhost:3000/"));
+        configuration.setAllowedMethods(List.of("*"));
+        configuration.setAllowedHeaders(List.of("*"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/", configuration);
+        source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 

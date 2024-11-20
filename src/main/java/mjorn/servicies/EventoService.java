@@ -1,6 +1,7 @@
 package mjorn.servicies;
 
 import mjorn.entities.Evento;
+import mjorn.entities.User;
 import mjorn.exceptions.NotFoundException;
 import mjorn.payloadDTO.EventoDTO;
 import mjorn.repositories.EventoRepo;
@@ -20,13 +21,14 @@ public class EventoService {
         return this.eventoRepo.findAll();
     }
 
-    public Evento saveEvento(EventoDTO body) {
+    public Evento saveEvento(EventoDTO body, User user) {
         Evento toSave = new Evento();
         toSave.setDataEvento(body.data());
         toSave.setImg(body.img());
         toSave.setLuogo(body.luogo());
         toSave.setNome(body.nome());
         toSave.setTesto(body.testo());
+        toSave.setUser(user);
         eventoRepo.save(toSave);
         return toSave;
     }

@@ -25,12 +25,7 @@ public class UsersController {
                               @RequestParam(defaultValue = "id") String sortBy) {
         return this.usersService.findAll(page, size, sortBy);
     }
-
-    // ************************************************* /ME ENDPOINTS ***********************************************
-    // tramite @AuthenticationPrincipal. Grazie a questo Principal quindi
-    // possiamo andare ad implementare tutta una serie di endpoint "personali", cioè endpoint per leggere il proprio profilo, cambiare i propri
-    // dati oppure anche cancellare se stessi. Inoltre grazie al Principal potremo in futuro anche andare ad effettuare dei controlli, es:
-    // endpoint per cancellare un record di cui sono proprietario, devo fare una verifica che il proprietario corrisponda al Principal
+    
 
     @GetMapping("/me")
     public User getProfile(@AuthenticationPrincipal User currentAuthenticatedUser) {
