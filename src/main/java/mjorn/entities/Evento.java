@@ -33,22 +33,21 @@ public class Evento {
 
     @Column(name = "img")
     private String img;
+    //TODO numero posti da implementare
+    //@Column(name="numeroposti")
+    //private int numeroposti;
 
     @Column(name = "data_inserimento")
     @CreationTimestamp
     private LocalDate dataInserimento;
-    @ManyToOne
-    @JoinColumn(name = "id_utente")
-    private User user;
 
-    public Evento(String nome, String dataEvento, String luogo, String testo, String img, LocalDate dataInserimento, User user) {
+    public Evento(String nome, String dataEvento, String luogo, String testo, String img, LocalDate dataInserimento) {
         this.nome = nome;
         this.dataEvento = dataEvento;
         this.luogo = luogo;
         this.testo = testo;
         this.img = img;
         this.dataInserimento = dataInserimento;
-        this.user = user;
     }
 }
 

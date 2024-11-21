@@ -28,7 +28,6 @@ public class EventoService {
         toSave.setLuogo(body.luogo());
         toSave.setNome(body.nome());
         toSave.setTesto(body.testo());
-        toSave.setUser(user);
         eventoRepo.save(toSave);
         return toSave;
     }

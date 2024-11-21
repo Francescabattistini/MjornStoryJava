@@ -35,7 +35,7 @@ public class User implements UserDetails {
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.role = Role.USER; // Tutti all'inizio vengono creati come utenti "semplici" poi in caso un admin potrà decidere di "promuoverli"
+        this.role = Role.USER;
     }
 
 
