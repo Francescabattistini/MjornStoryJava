@@ -25,10 +25,11 @@ public class UsersController {
                               @RequestParam(defaultValue = "id") String sortBy) {
         return this.usersService.findAll(page, size, sortBy);
     }
-    
+
 
     @GetMapping("/me")
     public User getProfile(@AuthenticationPrincipal User currentAuthenticatedUser) {
+        System.out.println(currentAuthenticatedUser);
         return currentAuthenticatedUser;
     }
 
@@ -49,7 +50,6 @@ public class UsersController {
     }
 
     @PutMapping("/{userId}")
-
     public User findByIdAndUpdate(@PathVariable long userId, @RequestBody @Validated NewUserDTO body, BindingResult validationResult) {
         if (validationResult.hasErrors()) {
             validationResult.getAllErrors().forEach(System.out::println);

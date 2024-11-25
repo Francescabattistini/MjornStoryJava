@@ -18,7 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-@Component // Non dimenticare @Component altrimenti questa classe non verrà utilizzata nella catena dei filtri
+@Component
 public class JWTCheckerFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -36,30 +36,19 @@ public class JWTCheckerFilter extends OncePerRequestFilter {
 
         jwt.verifyToken(accessToken);
 
-        // ******************************************************* AUTORIZZAZIONE ****************************************************************
 
-        // Se voglio abilitare le regole di AUTORIZZAZIONE, devo "informare" Spring Security su chi sia l'utente che sta effettuando questa richiesta
-        // così facendo Spring Security riuscirà a controllarne il ruolo per poi nei vari endpoint poter utilizzare l'annotazione @PreAuthorize
-        // specifica per il controllo ruoli
-
-        // 1. Cerco l'utente tramite id (l'id l'abbiamo messo nel token!)
         String userId = jwt.getIdFromToken(accessToken);
         User currentUser = this.usersService.findById(Long.valueOf((userId)));
 
-        // 2. Trovato l'utente posso associarlo al cosiddetto Security Context, questa è la maniera per Spring Security di associare l'utente alla
-        // richiesta corrente
-        Authentication authentication = new UsernamePasswordAuthenticationToken(currentUser, null, currentUser.getAuthorities());
-        // Il terzo parametro serve per poter utilizzare i vari @PreAuthorize perchè così il SecurityContext saprà quali sono i ruoli dell'utente
-        // che sta effettuando la richiesta
-        SecurityContextHolder.getContext().setAuthentication(authentication); // Aggiorniamo il SecurityContext associandogli l'utente autenticato
 
-        // 3. Andiamo avanti
+        Authentication authentication = new UsernamePasswordAuthenticationToken(currentUser, null, currentUser.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
 
     }
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return new AntPathMatcher().match("/**", request.getServletPath());
+        return new AntPathMatcher().match("/auth/**", request.getServletPath());
     }
 }
