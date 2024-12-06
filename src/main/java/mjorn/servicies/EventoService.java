@@ -28,6 +28,11 @@ public class EventoService {
         toSave.setLuogo(body.luogo());
         toSave.setNome(body.nome());
         toSave.setTesto(body.testo());
+        toSave.setImg(
+                body.img() != null && !body.img().isEmpty()
+                        ? body.img()
+                        : "https://community.velvetmag.it/wp-content/uploads/2023/12/Giochi-di-ruolo-da-tavolo-community-velvetmag-20231214.jpg"
+        );
         eventoRepo.save(toSave);
         return toSave;
     }
