@@ -33,7 +33,7 @@ public class EventoController {
     //POST http://localhost:3005/eventi
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    //todo metti permessi admin
+
     public Evento save(@AuthenticationPrincipal User user, @RequestBody @Validated EventoDTO body, BindingResult validationResult) {
 
         if (validationResult.hasErrors()) {
