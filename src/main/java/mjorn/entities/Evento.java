@@ -22,8 +22,8 @@ public class Evento {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "data_evento")
-    private String dataEvento;
+    @Column(name = "data")
+    private String data;
 
     @Column(name = "luogo")
     private String luogo;
@@ -41,9 +41,9 @@ public class Evento {
     @CreationTimestamp
     private LocalDate dataInserimento;
 
-    public Evento(String nome, String dataEvento, String luogo, String testo, String img, LocalDate dataInserimento) {
+    public Evento(String nome, String data, String luogo, String testo, String img, LocalDate dataInserimento) {
         this.nome = nome;
-        this.dataEvento = dataEvento;
+        this.data = data;
         this.luogo = luogo;
         this.testo = testo;
         this.img = img;

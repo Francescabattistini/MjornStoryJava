@@ -23,7 +23,7 @@ public class EventoService {
 
     public Evento saveEvento(EventoDTO body, User user) {
         Evento toSave = new Evento();
-        toSave.setDataEvento(body.data());
+        toSave.setData(body.data());
         toSave.setImg(body.img());
         toSave.setLuogo(body.luogo());
         toSave.setNome(body.nome());
